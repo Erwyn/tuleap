@@ -99,21 +99,21 @@ else
 fi
 
 # Install needed rpms
-$remotecmd yum install -y --nogpgcheck zip
+#$remotecmd yum install -y --nogpgcheck zip
 
-# Upload tuleap src into /root
-rsync --archive $src_dir $build_host:/root
-$remotecmd chown root:root -R /root/$src_dir
+## Upload tuleap src into /root
+#rsync --archive $src_dir $build_host:/root
+#$remotecmd chown root:root -R /root/$src_dir
 
-# Upload docbook utilities
-rsync -az --delete /var/lib/jenkins/docbook $build_host:/root
+## Upload docbook utilities
+#rsync -az --delete /var/lib/jenkins/docbook $build_host:/root
 
-# Build rpms
-time $remotecmd DOCBOOK_TOOLS_DIR=/root/docbook make -C /root/tuleap/tools/rpm all dist PKG_NAME=tuleap
+## Build rpms
+#time $remotecmd DOCBOOK_TOOLS_DIR=/root/docbook make -C /root/tuleap/tools/rpm all dist PKG_NAME=tuleap
 
-# Clean up the local dir
-rm -rf yum
+## Clean up the local dir
+#rm -rf yum
 
-# Publish the generated rpms in the workspace
-rsync -a $build_host:/root/rpmbuild/yum .
+## Publish the generated rpms in the workspace
+#rsync -a $build_host:/root/rpmbuild/yum .
 

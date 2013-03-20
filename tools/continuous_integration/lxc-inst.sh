@@ -5,7 +5,7 @@ ip_address=`LC_ALL=C ifconfig  | grep 'inet addr:'| grep -v '127.0.0.1' | cut -d
 repo_base_url=$1
 
 # Take the local centos mirror
-perl -pi -e 's%baseurl=http://mirror.bytemark.co.uk/centos%baseurl=ftp://degaine.cro.enalean.com/ftp.centos.org%' /etc/yum.repos.d/CentOS-Base.repo
+#perl -pi -e 's%baseurl=http://mirror.bytemark.co.uk/centos%baseurl=ftp://degaine.cro.enalean.com/ftp.centos.org%' /etc/yum.repos.d/CentOS-Base.repo
 
 # install rpms
 # Configure the Tuleap repositories
@@ -14,18 +14,7 @@ perl -pi -e 's%baseurl=http://mirror.bytemark.co.uk/centos%baseurl=ftp://degaine
 cat <<'EOF' >/etc/yum.repos.d/Tuleap.repo
 [Tuleap]
 name=Tuleap
-baseurl=ftp://ci.tuleap.net/yum/tuleap/dev/$basearch
-enabled=1
-gpgcheck=0
-exclude=tuleap*
-
-[Tuleap-dev]
-name=Tuleap-dev
-EOF
-
-echo "baseurl=$repo_base_url" >> /etc/yum.repos.d/Tuleap.repo
-
-cat <<'EOF' >>/etc/yum.repos.d/Tuleap.repo
+baseurl=http://ci.tuleap.net/yum/tuleap/dev/$basearch
 enabled=1
 gpgcheck=0
 EOF
